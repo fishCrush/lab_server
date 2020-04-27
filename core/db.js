@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 21:58:53
- * @LastEditTime: 2020-04-21 20:37:14
+ * @LastEditTime: 2020-04-24 01:49:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/core/db.js
@@ -33,33 +33,6 @@ sequelize.sync({  // 根据 model自动创建表
 }); // 必备此句
 
 
-// 改变全局Model来进行序列化
-// Model.prototype.toJSON= function(){
-//     // let data = this.dataValues
-//     let data = clone(this.dataValues)
-//     unset(data, 'updated_at')
-//     unset(data, 'created_at')
-//     unset(data, 'deleted_at')
-
-//     for (key in data){
-//         if(key === 'image'){
-//             if(!data[key].startsWith('http'))
-//                 data[key]=global.config.host + data[key]
-//         }
-//     }
-
-//     if(isArray(this.exclude)){
-//         this.exclude.forEach(
-//             (value)=>{
-//                 unset(data,value)
-//             }
-//         )
-//     }
-//     // this.exclude
-//     // exclude
-//     // a,b,c,d,e
-//     return data
-// }
 
 module.exports={
     sequelize 

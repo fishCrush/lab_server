@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 22:18:42
- * @LastEditTime: 2020-04-22 15:19:33
+ * @LastEditTime: 2020-04-25 12:47:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/models/user.js
@@ -11,24 +11,6 @@ const {sequelize} =require('../../core/db')  // 导入sequelize实例
 const {Sequelize,Model}=require('sequelize')  // 导入Sequelize
 
 class User extends Model{  // 模型表里可定义静态的方法；注意不能定义构造函数
-
-   static async  verifyNamePassword(name,plainPassword){ // 查询用户是否存在 // NO USE
-       const user = await User.findOne({
-           where:{
-            name
-           }
-       })
-       if(!user){
-           throw new global.errs.NotFound('用户不存在')
-       }
-       const correct = bcrypt.compareSync(plainPassword,user.password) // 查询用户密码是否与数据库里的一致
-       if(!correct){
-           throw new global.errs.AuthFailed('密码不正确')
-       }
-
-       return user;
-   }
-
 }
 
 User.init({
@@ -38,7 +20,12 @@ User.init({
         primaryKey:true,
         allowNull: false,
     },
-    name:{  // 这个之后会作为每个用户的uid
+    uid:{  // 
+        type:Sequelize.STRING,
+        unique:true,
+        allowNull: false,
+    },
+    name:{  // 这个之后会作为每个用户的uid?待定
         type:Sequelize.STRING,
         unique:true,
         allowNull: false,

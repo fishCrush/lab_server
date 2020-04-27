@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-21 14:38:28
- * @LastEditTime: 2020-04-21 20:00:00
+ * @LastEditTime: 2020-04-27 21:15:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/models/thing-label.js

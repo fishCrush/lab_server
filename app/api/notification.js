@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 12:05:28
- * @LastEditTime: 2020-04-22 13:16:41
+ * @LastEditTime: 2020-04-28 00:16:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/notification.js
@@ -16,19 +16,19 @@ const {  sequelize } = require('../../core/db')
 const { Notification } = require('@models/notification')
 
 router.post('/querylist_by_uid',async(ctx)=>{    // 获取消息记录
-    const {uid}=ctx.request.body;
+    const uid=ctx.cookies.get('uid');
     try{
        const data=await Notification.findAll({
            where:{
             targetUid: uid
            }
        })
-       console.log('data',data)
+    //    console.log('data',data)
         ctx.body={
             status_code:1,
             data
         }
-        ctx.status=400
+        ctx.status=200
     }catch(error){
         throw error
     }
@@ -52,8 +52,8 @@ router.post('/read_by_nid',async(ctx)=>{    // 阅读了某条消息
         ctx.body={
             status_code:1,
         }
-        ctx.status=400
-    }catch(error){
+        ctx.status=200
+    } catch(error){
         throw error
     }
 })

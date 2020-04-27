@@ -1,15 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 18:58:25
- * @LastEditTime: 2020-04-22 12:08:09
- * @LastEditors: your name
+ * @LastEditTime: 2020-04-24 11:55:55
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/config/config.js
  */
 module.exports={
     // 生产环境 prod
     environment:"dev", // 开发环境dev
-     database:{
+     database:{  //mysql的ORM sequelize的基本配置
          dbName:"labs",
          host:'localhost',
          port:3306,
@@ -29,5 +29,13 @@ module.exports={
         RegionId:"cn-hangzhou",
         SignName: "实验室资源管理系统",
         TemplateCode: "SMS_188570602"
+    },
+    oss:{  //阿里云对象存储 oss
+        region: 'oss-cn-shenzhen',  // bucket所在的区域  ！选的深圳
+        endpoint:'oss-cn-shenzhen.aliyuncs.com',
+        accessKeyId: 'LTAI4GCo3jGvNHANFMDvGg6z',
+        accessKeySecret: 'qKmBGujFdNnhURrEXOV500xI7hl4JN',
+        bucket:'fishlab',
+        // timeout：默认为 60 秒，指定访问 OSS 的 API 的超时时间。
     }
 }
