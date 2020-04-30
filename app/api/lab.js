@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-21 15:49:51
- * @LastEditTime: 2020-04-27 23:39:00
+ * @LastEditTime: 2020-04-30 10:07:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/lab.js
@@ -93,7 +93,7 @@ router.post('/modify_base',async(ctx)=>{    // 修改实验室的基本信息：
 
 router.post('/list_admin',async(ctx)=>{    // 用户作为超管的所有实验室  //且还包含这些实验室的所有普通管理员
             const uid=ctx.cookies.get('uid')
-            console.log("哈哈哈哈哈哈哈uid",uid)
+            // console.log("哈哈哈哈哈哈哈uid",uid)
             try{
                 const labRecords = await Lab.findAll({
                     where:{
@@ -194,9 +194,9 @@ router.post('/admin_and_host',async(ctx)=>{    // 通过lid查询某个实验室
         const hostRecords=await UserLab.findAll({
             where:{lid}
         })
-        console.log("hostRecords",hostRecords);
+        // console.log("hostRecords",hostRecords);
         const hostsUid=hostRecords.map(hostRecord=>hostRecord.uid)
-        console.log("hostsUid",hostsUid);
+        // console.log("hostsUid",hostsUid);
         const hostUserRecords=await User.findAll({
             where:{
                 uid:{

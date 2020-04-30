@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 08:22:35
- * @LastEditTime: 2020-04-27 19:58:41
+ * @LastEditTime: 2020-04-30 10:08:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/user.js
@@ -55,9 +55,8 @@ router.post('/user_now',async(ctx)=>{
  * @return: 
  */
 router.post('/register',async(ctx)=>{    
-  console.log("请求进来了  哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈")
     const {phone,code,name,password}=ctx.request.body
-    console.log("phone,code,name,password",phone,code,name,password)
+    // console.log("phone,code,name,password",phone,code,name,password)
     const phoner=await Sms.findOne({
       where:{
         phone,
@@ -175,9 +174,9 @@ router.post('/send_sms',async(ctx)=>{
  * @return: 
  */
 router.post('/login',async(ctx)=>{    // 登录
-  console.log("header",ctx.request.header)
+  // console.log("header",ctx.request.header)
     const {name,password}=ctx.request.body
-    console.log("name,password",name,password)
+    // console.log("name,password",name,password)
     try{
     const user=await User.findOne({
       where:{
@@ -222,7 +221,7 @@ router.post('/modify_pwd',async(ctx)=>{
         uid
       }
    })
-   console.log("userRecord",userRecord);
+  //  console.log("userRecord",userRecord);
     const correct = bcrypt.compareSync(oldPwd,userRecord.password) // 查询用户密码是否与数据库里的一致
 
     if(!correct){ // 检测用户和密码是否正确

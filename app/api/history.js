@@ -27,7 +27,7 @@ router.post('/list',async(ctx)=>{    // 获取某实验室的操作历史记录
             },
             'order': [["created_at","DESC"]]  //按照创建时间降序
         })
-        console.log("hahahha historyRecords",historyRecords)
+        // console.log("hahahha historyRecords",historyRecords)
        const changeRecords =await HistoryModifyChange.findAll({
             where:{
                 lid

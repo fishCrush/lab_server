@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 15:24:04
- * @LastEditTime: 2020-04-27 17:54:43
+ * @LastEditTime: 2020-04-30 10:08:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/thing.js
@@ -34,7 +34,7 @@ router.post('/export_info',async(ctx)=>{
          where:{ lid } ,
          attributes: oldKeys
         })
-        console.log("thingRecords",thingRecords)
+        // console.log("thingRecords",thingRecords)
         const  formatRecords=[]
         const  newKeys=["物品名称","物品数量","物品标签","物品备注"]
         thingRecords.map(oldObj=>{
@@ -45,7 +45,7 @@ router.post('/export_info',async(ctx)=>{
             })
             formatRecords.push(newObj)
         })
-        console.log(formatRecords)
+        // console.log(formatRecords)
         ctx.body={
             status_code:1,
             data:formatRecords
@@ -67,7 +67,7 @@ router.post('/export_all',async(ctx)=>{
          where:{ lid } ,
          attributes: oldKeys
         })
-        console.log("thingRecords",thingRecords)
+        // console.log("thingRecords",thingRecords)
         const  formatRecords=[]
         const  newKeys=["物品名称","物品数量","物品标签","物品备注"]
         thingRecords.map(oldObj=>{
@@ -78,7 +78,7 @@ router.post('/export_all',async(ctx)=>{
             })
             formatRecords.push(newObj)
         })
-        console.log(formatRecords)
+        // console.log(formatRecords)
 
         const sheet = xlsx.utils.json_to_sheet(formatRecords );
         const book = xlsx.utils.book_new();
@@ -254,7 +254,7 @@ router.post('/add_bulk_upload',async(ctx)=>{
         // 和history_bulk表相关的
         const thingNamesClone=clone(thingNames)
         thingNamesClone.shift()  // 去掉第一个然后加入history_bulk表
-        console.log('啦啦啦啦啦',thingNamesClone)
+        // console.log('thingNamesClone',thingNamesClone)
 
         if(thingNamesClone.length>0){
             thingNamesClone.map(async(thing)=>{
