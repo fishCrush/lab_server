@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 15:24:04
- * @LastEditTime: 2020-05-01 14:34:13
+ * @LastEditTime: 2020-05-01 15:23:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/thing.js
@@ -303,7 +303,7 @@ router.post('/modify',async(ctx)=>{
           }
         )
         console.log("服务端接收到的imgs",imgs);
-        if(imgs>0){  //图片暂时只做新增，无删除功能
+        if(imgs){  //图片暂时只做新增，无删除功能
                imgs.map(async(url)=>{
                    await  ThingImg.create({ lid, thingid, url }
                    )
