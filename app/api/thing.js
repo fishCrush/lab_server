@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 15:24:04
- * @LastEditTime: 2020-04-30 10:08:07
+ * @LastEditTime: 2020-05-01 14:17:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/thing.js
@@ -283,7 +283,7 @@ router.post('/modify',async(ctx)=>{
     try{
         const hid=Uuid.v1()
         // 新值  
-        const {uname,lid,thingid,name,
+        const {uname,lid,thingid,name,imgs,
             nNum, nRate, nRemark, nLabels}=ctx.request.body
         // 旧值
         const originRecord=await Thing.findOne({
@@ -301,6 +301,13 @@ router.post('/modify',async(ctx)=>{
               where:{  thingid  }
           }
         )
+        console.log("服务端接收到的imgs",imgs);
+        if(imgs>0){  //图片暂时只做新增，无删除功能
+               imgs.map(async(url)=>{
+                   await  ThingImg.create({ lid, thingid, url }
+                   )
+                 })
+        }
 
         // 操作历史记录相关
         await History.create({  
