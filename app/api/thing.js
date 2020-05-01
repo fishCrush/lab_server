@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 15:24:04
- * @LastEditTime: 2020-05-01 14:17:51
+ * @LastEditTime: 2020-05-01 14:34:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/thing.js
@@ -231,6 +231,7 @@ router.post('/add_bulk_upload',async(ctx)=>{
          if(!newObj["name"] || !newObj["num"]){
              throw new RequireError()
          }
+         //处理
 
          const thingid=Uuid.v1()
          newObj["lid"]=lid
