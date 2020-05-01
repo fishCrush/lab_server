@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 12:05:28
- * @LastEditTime: 2020-04-28 00:16:58
+ * @LastEditTime: 2020-05-01 11:12:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/notification.js
@@ -21,7 +21,8 @@ router.post('/querylist_by_uid',async(ctx)=>{    // 获取消息记录
        const data=await Notification.findAll({
            where:{
             targetUid: uid
-           }
+           },
+           "order":[["created_at","DESC"]]
        })
     //    console.log('data',data)
         ctx.body={

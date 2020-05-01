@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-21 15:49:51
- * @LastEditTime: 2020-04-30 10:07:17
+ * @LastEditTime: 2020-04-30 13:45:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/lab.js
@@ -62,8 +62,7 @@ router.post('/create',async(ctx)=>{    // 创建一个新的实验室
             ctx.status=200
         }catch(error){
             throw error
-        }
-        
+        }       
         
 })
 
@@ -171,7 +170,7 @@ router.post('/querylab_by_lid',async(ctx)=>{    // 通过lid查询某个实验�
           status_code:1,
           data,
       }
-      ctx.status=400
+      ctx.status=200
     } catch(error){
         throw error
     }
