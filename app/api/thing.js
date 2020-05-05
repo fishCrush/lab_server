@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 15:24:04
- * @LastEditTime: 2020-05-01 15:23:36
+ * @LastEditTime: 2020-05-05 11:20:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/thing.js
@@ -17,7 +17,7 @@ const { ThingImg } = require('@models/thing_img')
 const { History } = require('@models/history')
 const { HistoryModifyChange } = require('@models/history_modify_change')
 const { HistoryBulkName } = require('@models/history_bulk_name')
-const { EmptyUploadError, InvalidUploadError, RequireError } = require('../../core/http-error')
+const { EmptyUploadError, InvalidUploadError, RequireError,NumTypeError } = require('../../core/http-error')
 const { getBufferFromFile } = require('../../core/utils')
 const router =new Router({
     prefix:"/thing"
@@ -28,7 +28,7 @@ const router =new Router({
 router.post('/export_info',async(ctx)=>{  
     const { lid }=ctx.request.body
     // const lid="光电光纤研究实验室";
-    const oldKeys=['name', 'num','labels','remark']
+    const oldKeys=['name', 'num','labels','rate','remark',]
     try{
         const thingRecords= await Thing.findAll({
          where:{ lid } ,
@@ -36,7 +36,7 @@ router.post('/export_info',async(ctx)=>{
         })
         // console.log("thingRecords",thingRecords)
         const  formatRecords=[]
-        const  newKeys=["物品名称","物品数量","物品标签","物品备注"]
+        const  newKeys=["物品名称","物品数量","物品标签","物品重要性","物品备注"]
         thingRecords.map(oldObj=>{
             let newObj={}
             newKeys.map((key,index)=>{
@@ -231,8 +231,13 @@ router.post('/add_bulk_upload',async(ctx)=>{
          if(!newObj["name"] || !newObj["num"]){
              throw new RequireError()
          }
-         //处理
+         // 检查num字段是否为数字类型
+         if(typeof newObj["num"]!=="number"){
+             throw new NumTypeError()
+         }
 
+
+         //处理
          const thingid=Uuid.v1()
          newObj["lid"]=lid
          newObj["thingid"]=thingid

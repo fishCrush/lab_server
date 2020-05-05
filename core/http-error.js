@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-21 11:54:41
- * @LastEditTime: 2020-04-24 21:11:47
+ * @LastEditTime: 2020-05-05 11:44:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/core/http-error.js
@@ -71,6 +71,15 @@ class RequireError extends HttpError{
     }
 }
 
+class NumTypeError extends HttpError{
+    constructor(msg){
+        super()
+        this.statusCode=0; // 状态码：
+        this.errorCode=205; // 错误码：
+        this.msg=msg || '添加失败！物品数量一列出现非数字的值，请重新检查';
+    }
+}
+
 class OssUploadError extends HttpError{
     constructor(msg){
         super()
@@ -88,6 +97,7 @@ module.exports={
     DataEmptyUploadError,
     InvalidUploadError,
     RequireError,
+    NumTypeError,
     OssUploadError,
 }
 

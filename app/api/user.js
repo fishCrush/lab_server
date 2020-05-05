@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 08:22:35
- * @LastEditTime: 2020-04-30 10:08:23
+ * @LastEditTime: 2020-05-05 12:04:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/user.js
@@ -225,7 +225,7 @@ router.post('/modify_pwd',async(ctx)=>{
     const correct = bcrypt.compareSync(oldPwd,userRecord.password) // 查询用户密码是否与数据库里的一致
 
     if(!correct){ // 检测用户和密码是否正确
-      throw new PwdError('密码出错！请重新输入正确密码')
+      throw new PwdError('原密码出错！请重新输入正确密码')
     } 
     await User.update({
       password:newPwd
