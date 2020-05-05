@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 08:22:35
- * @LastEditTime: 2020-05-05 12:04:19
+ * @LastEditTime: 2020-05-05 22:23:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/user.js
@@ -256,7 +256,7 @@ router.post('/user_lab_all_name',async(ctx)=>{
     const userRecords=await User.findAll()
     const labRecords=await Lab.findAll()
     const usersName=userRecords.map(item=>item.name)
-    const labsName=labRecords.map(item=>item.lid)
+    const labsName=labRecords.map(item=>item.name)
     ctx.body={
       status_code:1,
       data:{
