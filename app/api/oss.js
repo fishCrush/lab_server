@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-24 10:24:45
- * @LastEditTime: 2020-04-26 13:47:50
+ * @LastEditTime: 2020-05-16 11:24:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/oss.js
@@ -19,9 +19,6 @@ const router =new Router({
 });
 const {region,accessKeyId,accessKeySecret,bucket,endpoint}=oss
 
-
-
-
 router.post('/img_oss',async(ctx)=>{    // 获取某实验室的操作历史记录
     const files = ctx.request.files;
     console.log("hahahhaha files",files)
@@ -33,21 +30,6 @@ router.post('/img_oss',async(ctx)=>{    // 获取某实验室的操作历史记�
     try{
         let client = new OSS({ region,   accessKeyId, accessKeySecret, bucket,endpoint});
         client.useBucket(bucket);
-        // const urls=await Promise.all( 
-        //        fileList.map(async(file,index)=>{
-        //         let buffer = getBufferFromFile(file)  // 图片先处理成buffer类型的可读流数据类型
-        //         const subSuffix=Uuid.v1()
-        //         let result = await client.put(`${subSuffix} ${index}`, buffer); // oss的put接口 上传文件
-        //         // console.log("result",result);
-        //         const { url,res }= result
-        //         if(res.statusCode!==200){
-        //           throw new OssUploadError()
-        //         }
-        //         // console.log("url",url);
-        //         return url
-        //     })
-        // )
-        // console.log("imgUrlListres",urls)
         let buffer = getBufferFromFile(file)  // 图片先处理成buffer类型的可读流数据类型
         const subSuffix=Uuid.v1()
         let result = await client.put(`${subSuffix}`, buffer); // oss的put接口 上传文件

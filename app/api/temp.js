@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-23 15:33:13
- * @LastEditTime: 2020-04-23 18:07:46
+ * @LastEditTime: 2020-05-16 11:25:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/temp.js
@@ -13,11 +13,7 @@ const router =new Router({
     prefix:"/temp"
 });
 
-// axios.get('/user', {
-//     params: {
-//       ID: 12345
-//     }
-//   })
+
 router.post('/list',async(ctx)=>{  
       // 获取某实验室的温度数据
 })

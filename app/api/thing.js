@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 15:24:04
- * @LastEditTime: 2020-05-05 11:20:47
+ * @LastEditTime: 2020-05-16 11:25:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/thing.js
@@ -27,7 +27,6 @@ const router =new Router({
 // 下载文件  返回JSON数据
 router.post('/export_info',async(ctx)=>{  
     const { lid }=ctx.request.body
-    // const lid="光电光纤研究实验室";
     const oldKeys=['name', 'num','labels','rate','remark',]
     try{
         const thingRecords= await Thing.findAll({
@@ -193,8 +192,8 @@ router.post('/add_bulk_upload',async(ctx)=>{
     const lid=new Buffer(lidBase64, 'base64').toString();
     const files = ctx.request.files;
     // const file=files.file
-    // console.log("啦啦啦啦啦啦啦啦啦啦files",files)
-    // console.log("哈哈哈哈哈哈哈哈哈哈或",file)
+    // console.log("files",files)
+    // console.log("file",file)
 
     if(!files||!files.file){  //若没有文件
         throw new EmptyUploadError()
@@ -243,7 +242,7 @@ router.post('/add_bulk_upload',async(ctx)=>{
          newObj["thingid"]=thingid
          formatResult.push(newObj);
     })
-    // console.log("哈哈formatResult",formatResult)
+    // console.log("formatResult",formatResult)
     const thingNames=formatResult.map(itemObj=>itemObj.name)
       // 将数据加入数据库里
         await Thing.bulkCreate(formatResult)

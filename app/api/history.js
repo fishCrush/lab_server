@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-23 13:13:59
- * @LastEditTime: 2020-05-01 11:12:04
+ * @LastEditTime: 2020-05-16 11:23:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/history.js
@@ -27,7 +27,7 @@ router.post('/list',async(ctx)=>{    // 获取某实验室的操作历史记录
             },
             'order': [["created_at","DESC"]]  //按照创建时间降序
         })
-        // console.log("hahahha historyRecords",historyRecords)
+        // console.log("historyRecords",historyRecords)
        const changeRecords =await HistoryModifyChange.findAll({
             where:{
                 lid

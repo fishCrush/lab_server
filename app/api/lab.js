@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-21 15:49:51
- * @LastEditTime: 2020-04-30 13:45:39
+ * @LastEditTime: 2020-05-16 11:23:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/lab.js
@@ -22,7 +22,6 @@ const router =new Router({
 const {PwdError}=require('../../core/http-error')
 
 router.post('/setCookie_lid',async(ctx)=>{    // 种cookie 实验民
-    // const uid=ctx.cookies.get('uid')
      const {lid}=ctx.request.body;
      const lidBase64= new Buffer(lid).toString('base64');//中文转base64编码
      try{
@@ -92,7 +91,7 @@ router.post('/modify_base',async(ctx)=>{    // 修改实验室的基本信息：
 
 router.post('/list_admin',async(ctx)=>{    // 用户作为超管的所有实验室  //且还包含这些实验室的所有普通管理员
             const uid=ctx.cookies.get('uid')
-            // console.log("哈哈哈哈哈哈哈uid",uid)
+            // console.log("uid",uid)
             try{
                 const labRecords = await Lab.findAll({
                     where:{

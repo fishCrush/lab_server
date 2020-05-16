@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 08:22:35
- * @LastEditTime: 2020-05-05 22:23:59
+ * @LastEditTime: 2020-05-16 11:28:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/user.js
@@ -149,13 +149,11 @@ router.post('/send_sms',async(ctx)=>{
             })
             // console.log("isHasPhoner",isHasPhoner)
             if(isHasPhoner){
-              // console.log("进来已有了！！")
               await Sms.update({  // 若已有则修改
                 code:CODE
               },{   where:{ phone }  })
             } else
             {
-              //  console.log("进来没有的判断里了！！")
                await Sms.create({  // 若无则增加
                 phone,
                 code:CODE
@@ -211,8 +209,6 @@ router.post('/login',async(ctx)=>{    // 登录
  * @return: 
  */
 router.post('/modify_pwd',async(ctx)=>{    
-  // console.log("等着获取cookie某个字段的值~~~~~~~~~")
-  // console.log("age",ctx.cookies.get('name'))
   const uid=ctx.cookies.get('uid')
   const { oldPwd, newPwd }=ctx.request.body
   try{
