@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-18 08:22:35
- * @LastEditTime: 2020-05-16 11:28:39
+ * @LastEditTime: 2020-05-17 22:44:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/user.js
@@ -167,7 +167,7 @@ router.post('/send_sms',async(ctx)=>{
 })
 
 /**
- * @description: 登录
+ * @description: 登录(用户名密码登录)
  * @param {type} 
  * @return: 
  */
@@ -199,8 +199,50 @@ router.post('/login',async(ctx)=>{    // 登录
 
     }catch(error){
       throw error
+    } 
+})
+
+
+/**
+ * @description: 登录(手机验证码登录)
+ * @param {type} 
+ * @return: 
+ */
+router.post('/login_by_phone',async(ctx)=>{    // 登录
+  // console.log("header",ctx.request.header)
+    const {phone,sms}=ctx.request.body
+    // console.log("name,password",name,password)
+    try{
+    const user=await User.findOne({
+      where:{
+        phone
+      }
+    })
+    
+    if(!user){
+      throw new NoUserError()
     }
-   
+
+    const phoner=await Sms.findOne({
+      where:{
+        phone,
+        code:sms
+      }
+    })
+
+    if(!phoner){
+      throw new HttpError('验证码出错，请输入正确的短信验证码')
+    }
+    
+    const {uid}=user    // 注册或者登陆都需要设置cookie
+    ctx.cookies.set('uid', uid, {  expires: new Date('2020-06-15')});   //maxAge：cookie有效时长,单位:毫秒数 这里是20个小时
+    ctx.body={
+      status_code:1
+    }
+    ctx.status=200
+    }catch(error){
+      throw error
+    } 
 })
 
 /**
