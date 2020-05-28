@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-22 15:24:04
- * @LastEditTime: 2020-05-16 11:25:46
+ * @LastEditTime: 2020-05-28 22:27:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /server/app/api/thing.js
@@ -219,19 +219,21 @@ router.post('/add_bulk_upload',async(ctx)=>{
     // 进行key值得转换（中文表头字段换成英文key）
     const formatResult = [];
     const newKeys=["name","num","rate","labels","remark"]
+    // console.log("哈哈哈哈哈哈哈 parsedJson",parsedJson);
+    // return false;
     parsedJson.map((rowObj,indexo)=>{
         const newObj={}
         const keys= Object.keys(rowObj);
          keys.map((key,index)=>{
              const newKey=newKeys[index]
-             newObj[newKey]=rowObj[key]
+             newObj[newKey]=(typeof rowObj[key]==='string')?rowObj[key].trim():rowObj[key]  //去调前后空格
          })
         // 检查必填字段name和num是否有缺
          if(!newObj["name"] || !newObj["num"]){
              throw new RequireError()
          }
          // 检查num字段是否为数字类型
-         if(typeof newObj["num"]!=="number"){
+         if(typeof newObj["num"]!=="number"||(typeof newObj["num"]==="sting" && typeof parseInt(newObj["num"])!=="number")){
              throw new NumTypeError()
          }
 
