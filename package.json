@@ -11,7 +11,7 @@
   "dependencies": {
     "@alicloud/pop-core": "^1.7.9",
     "ali-oss": "^6.7.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.4.0",
     "koa": "^2.7.0",
