@@ -13,7 +13,7 @@
     "ali-oss": "^6.7.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.7.0",
     "koa-body": "^4.1.1",
     "koa-bodyparser": "^4.2.1",
